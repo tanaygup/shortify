@@ -40,11 +40,10 @@ export const createShortUrlwithAI = wrapAsync(async (req, res) => {
 
   try {
     const aiSlugs = await generateSlugWithGemini(url, req.user._id);
-    if (aiSlugs.length === 0)
+    if (!aiSlugs)
       return res.status(500).json({ error: "Failed to generate slugs" });
 
     res.status(200).json({
-      message: "AI slugs generated successfully",
       shortUrl: process.env.APP_URL + aiSlugs,
     });
   } catch (err) {

@@ -84,7 +84,7 @@ export default function Signup() {
       setShowSuccess(true);
 
       setTimeout(() => {
-        navigate("/");
+        navigate("/dashboard");
       }, 1500);
     } catch (error) {
       const errorMessage =

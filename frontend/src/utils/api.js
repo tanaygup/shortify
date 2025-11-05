@@ -51,3 +51,65 @@ export const getCurrentUser = async () => {
 
   return response.json();
 };
+
+export const shortenURL = async (url, slug = null) => {
+  const headers = {
+    // Tell the server we're sending JSON
+    "Content-Type": "application/json",
+  };
+
+  // Construct the body according to your backend's expectations (data.url, data.slug)
+  const bodyData = { url };
+  if (slug) {
+    bodyData.slug = slug;
+  }
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/create`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(bodyData),
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      // Try to parse a JSON error message from the backend
+      const errorData = await response.json();
+      throw new Error(
+        errorData.message || `HTTP error! Status: ${response.status}`
+      );
+    }
+
+    // Parse the successful JSON response
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error shortening URL:", error);
+    throw error;
+  }
+};
+
+export const generateAISlug = async (url) => {
+  const headers = {
+    "Content-Type": "application/json",
+  };
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/create/ai`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ url }),
+      credentials: "include",
+    });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(
+        errorData.message || `HTTP error! Status: ${response.status}`
+      );
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error generating AI slugs:", error);
+    throw error;
+  }
+};
