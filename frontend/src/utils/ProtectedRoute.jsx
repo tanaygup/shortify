@@ -11,7 +11,8 @@ const ProtectedRoute = ({ children }) => {
     const verify = async () => {
       try {
         const res = await axios.get(
-          "https://shortify-7rv5.vercel.app/api/auth/me"
+          "https://shortify-7rv5.vercel.app/api/auth/me",
+          { withCredentials: true }
         );
         if (res.status === 200) setIsAuth(true);
       } catch (err) {
