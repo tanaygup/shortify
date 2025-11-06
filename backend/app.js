@@ -18,7 +18,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://shortify-coral.vercel.app/", // your React app
+    origin: "https://shortify-coral.vercel.app", // your React app
     credentials: true, // 👈 this allows cookies to be sent
   })
 );
