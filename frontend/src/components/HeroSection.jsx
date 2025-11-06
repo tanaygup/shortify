@@ -14,7 +14,7 @@ export default function HeroSection() {
     try {
       // 2. Send the request to your backend
       const response = await fetch(
-        `${import.meta.env.VITE_PUBLIC_API_URL}/api/create/`,
+        "https://shortify-7rv5.vercel.app/api/create/",
         {
           method: "POST",
           headers: {

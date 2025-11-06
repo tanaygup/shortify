@@ -10,9 +10,7 @@ const ProtectedRoute = ({ children }) => {
   useEffect(() => {
     const verify = async () => {
       try {
-        const res = await axios.get(
-          `${import.meta.env.VITE_PUBLIC_API_URL}/auth/me`
-        );
+        const res = await axios.get("https://shortify-7rv5.vercel.app/auth/me");
         if (res.status === 200) setIsAuth(true);
       } catch (err) {
         console.error(err);
