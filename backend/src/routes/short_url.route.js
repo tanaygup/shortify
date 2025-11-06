@@ -3,9 +3,10 @@ import {
   createShortUrl,
   createShortUrlwithAI,
 } from "../controller/short_url.controller.js";
+import { authMiddleware } from "../middleware/auth.middleware.js";
 const router = express.Router();
 
-router.post("/", createShortUrl);
-router.post("/ai", createShortUrlwithAI);
+router.post("/", authMiddleware, createShortUrl);
+router.post("/ai", authMiddleware, createShortUrlwithAI);
 
 export default router;

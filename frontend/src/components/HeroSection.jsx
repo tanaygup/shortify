@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, TrendingUp, Zap, Copy } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function HeroSection() {
   const [longUrl, setLongUrl] = useState("");
   const [shortUrl, setShortUrl] = useState("");
   const [isShortened, setIsShortened] = useState(false);
+  const redirect = useNavigate();
 
   const handleShorten = async () => {
     // Logic to handle URL shortening by secnding request to backend API /api/create
@@ -31,6 +33,10 @@ export default function HeroSection() {
       } else {
         // Handle server errors (e.g., invalid URL)
         const errorData = await response.json();
+        if (response.status === 401) {
+          redirect("/login");
+          return;
+        }
         alert(errorData.message || "Failed to shorten URL");
       }
     } catch (error) {
