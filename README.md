@@ -48,7 +48,7 @@ This is a full-stack URL shortener application with a modern, responsive fronten
 1.  **Clone the repository:**
 
     ```bash
-    git clone https://github.com/your-username/url-shortener.git
+    git clone https://github.com/your-username/shortify.git
     cd url-shortener
     ```
 
