@@ -10,7 +10,9 @@ const ProtectedRoute = ({ children }) => {
   useEffect(() => {
     const verify = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/auth/me");
+        const res = await axios.get(
+          `${import.meta.env.VITE_PUBLIC_API_URL}/auth/me`
+        );
         if (res.status === 200) setIsAuth(true);
       } catch (err) {
         console.error(err);
